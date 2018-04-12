@@ -26,6 +26,6 @@ If you're a Linux system, uncomment Linux's LDFLAGS rule on the root Makefile
 
 **Author** : Sebastien S.
 
-**Github repository :** https://github.com/neoski/minishell
+**Github repository :** https://github.com/neoski/worldOfWalls
 
 Made during my studies in january 2015.
