@@ -1,4 +1,4 @@
-# worldOfWalls
+# WorldOfWalls
 A 3D game coded in C mainly pixel by pixel using an external lib (*the Minilibx*).
 
 <img alt="WorldOfWalls Demo" src="https://s17.postimg.cc/cqgtprdlb/world_Of_Walls_Demo.gif" height="300px"/>
