@@ -15,7 +15,7 @@ xorg and x11 for Linux systems / XQuartz for Mac (which includes x11)
 
 The minilibx installed (You can find it in `minilibx.tgz` which you can decompress with `tar -xf`, `make` and move their `libmlx.a` in `/usr/X11/lib` or `/usr/local/lib` depending of your OS)
 
-If you're a Linux system, uncomment Linux's LDFLAGS rule on the root Makefile
+If you're a Linux system, uncomment Linux's `LDFLAGS` rule on the root Makefile
 
 
 ### Usage :
