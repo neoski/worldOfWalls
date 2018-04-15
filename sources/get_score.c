@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 int	my_get_char_size(int nb)
 {

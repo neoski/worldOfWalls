@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 int	ini_first_pos(t_window *wind, int i, int x, int y)
 {

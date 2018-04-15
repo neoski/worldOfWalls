@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 int	check_weapon(t_window *wind)
 {

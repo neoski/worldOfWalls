@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 char		*check_if_new_fd(int fd, char *str, int *key)
 {

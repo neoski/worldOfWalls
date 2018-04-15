@@ -82,7 +82,7 @@ typedef struct	s_window
   int	        space;
   t_coord	*coord;
   t_color	color;
-}             t_window;
+}               t_window;
 
 char	*get_wolf_map(char *map, char *file, int i, int y);
 int	build_img(t_window *wind, float xmax);

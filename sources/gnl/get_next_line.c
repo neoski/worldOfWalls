@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 char	*my_gnl_realloc(char *old, int i, int *interrupter)
 {

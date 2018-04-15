@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 int	change_wall_color(t_window *wind, float ksave)
 {

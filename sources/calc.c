@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 int	is_wall(char *map, int x, int y, int xmap)
 {

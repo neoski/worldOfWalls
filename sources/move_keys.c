@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 int	build_or_rm(char *map, int x, int y, int command)
 {

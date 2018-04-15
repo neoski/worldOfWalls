@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 int	chose_map(t_window *wind, int i, int w, int h)
 {

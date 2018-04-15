@@ -1,4 +1,4 @@
-#include "wolf.h"
+#include "worldOfWalls.h"
 
 void		draw_line(t_window *wind, int x, int i, int z)
 {
