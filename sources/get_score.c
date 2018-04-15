@@ -32,18 +32,18 @@ int	my_get_char(char *result, int nb)
   return (0);
 }
 
-int	get_score(t_img *img)
+int	get_score(t_window *wind)
 {
   int	nb;
   char	*res;
 
-  if ((nb = check_if_win(img, x_max_map(img->map), y_max_map(img->map))) < 0)
+  if ((nb = check_if_win(wind, x_max_map(wind->map), y_max_map(wind->map))) < 0)
     return (0);
   if ((res = malloc(12)) == NULL)
     exit(0);
-  mlx_string_put(img->ini, img->window, 20, 20, 0x33CCFF, "WALLS REMAINING :");
+  mlx_string_put(wind->ini, wind->window, 20, 20, 0x33CCFF, "WALLS REMAINING :");
   my_get_char(res, nb);
-  mlx_string_put(img->ini, img->window, 130, 20, 0x33CCFF, res);
+  mlx_string_put(wind->ini, wind->window, 130, 20, 0x33CCFF, res);
   free(res);
   return (0);
 }

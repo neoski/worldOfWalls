@@ -1,52 +1,52 @@
 #include "wolf.h"
 
-int	check_weapon(t_img *img)
+int	check_weapon(t_window *wind)
 {
   int	w;
   int	h;
   void	*tmp;
   void  *tmp2;
 
-  if (img->weapon== 0 || img->weapon== 1)
+  if (wind->weapon== 0 || wind->weapon== 1)
     {
-      if (img->weapon== 0)
+      if (wind->weapon== 0)
         {
 	tmp =
-	  mlx_xpm_file_to_image(img->ini, "./img/hammer.xpm", &w, &h);
+	  mlx_xpm_file_to_image(wind->ini, "./img/hammer.xpm", &w, &h);
   tmp2 = 
-    mlx_xpm_file_to_image(img->ini, "./img/hammerBis.xpm", &w, &h);
+    mlx_xpm_file_to_image(wind->ini, "./img/hammerBis.xpm", &w, &h);
         }
       else
       {
 	tmp =
-	  mlx_xpm_file_to_image(img->ini, "./img/scepter.xpm", &w, &h);
+	  mlx_xpm_file_to_image(wind->ini, "./img/scepter.xpm", &w, &h);
   tmp2 =
-	  mlx_xpm_file_to_image(img->ini, "./img/scepterBis.xpm", &w, &h);
+	  mlx_xpm_file_to_image(wind->ini, "./img/scepterBis.xpm", &w, &h);
       }
       if (tmp == 0)
 	{
 	  my_puterror("Cannot access to weapons images\n");
 	  exit(0);
 	}
-      img->weaponImg =
-	mlx_get_data_addr(tmp, &img->bpp, &img->sizeline, &img->endian);
-      img->weaponBisImg =
-	mlx_get_data_addr(tmp2, &img->bpp, &img->sizeline, &img->endian);
+      wind->weaponImg =
+	mlx_get_data_addr(tmp, &wind->bpp, &wind->sizeline, &wind->endian);
+      wind->weaponBisImg =
+	mlx_get_data_addr(tmp2, &wind->bpp, &wind->sizeline, &wind->endian);
       free(tmp);
       free(tmp2);
     }
   return (0);
 }
 
-int	change_weapon(t_img *img)
+int	change_weapon(t_window *wind)
 {
-  if (img->weapon== 0)
-    img->weapon= 1;
-  else if (img->weapon== 1)
-    img->weapon= 2;
-  else if (img->weapon== 2)
-    img->weapon= 0;
-  check_weapon(img);
+  if (wind->weapon== 0)
+    wind->weapon= 1;
+  else if (wind->weapon== 1)
+    wind->weapon= 2;
+  else if (wind->weapon== 2)
+    wind->weapon= 0;
+  check_weapon(wind);
   return (0);
 }
 
@@ -61,9 +61,9 @@ int	strlcpy(char *src, char *dest, int i)
   return (0);
 }
 
-int	my_datacpy(t_img *img, char *scr, char *dest, int i)
+int	my_datacpy(t_window *wind, char *scr, char *dest, int i)
 {
-  while (i != YIMG * img->sizeline + XIMG * (img->bpp / 8) + 2)
+  while (i != YIMG * wind->sizeline + XIMG * (wind->bpp / 8) + 2)
     {
       if (scr[i] == 10 && scr[i + 1] == 100)
 	i += 3;
@@ -73,29 +73,29 @@ int	my_datacpy(t_img *img, char *scr, char *dest, int i)
   return (0);
 }
 
-int		background(t_img *img)
+int		background(t_window *wind)
 {
   static char	*save;
   int		w;
   int		h;
 
-  if (img->key != 1)
+  if (wind->key != 1)
     {
-      img->img =
-	mlx_xpm_file_to_image(img->ini, "./img/bg.xpm", &w, &h);
-      if (img->img == 0)
+      wind->img =
+	mlx_xpm_file_to_image(wind->ini, "./img/bg.xpm", &w, &h);
+      if (wind->img == 0)
 	{
 	  my_puterror("Cannot access to background images\n");
 	  exit (0);
 	}
-      img->data =
-	mlx_get_data_addr(img->img, &img->bpp, &img->sizeline, &img->endian);
-      save = malloc(YIMG * img->sizeline + XIMG * (img->bpp / 8) + 2 + 1);
+      wind->data =
+	mlx_get_data_addr(wind->img, &wind->bpp, &wind->sizeline, &wind->endian);
+      save = malloc(YIMG * wind->sizeline + XIMG * (wind->bpp / 8) + 2 + 1);
       if (save == NULL)
 	exit(0);
-      my_datacpy(img, img->data, save, 0);
-      img->key = 1;
+      my_datacpy(wind, wind->data, save, 0);
+      wind->key = 1;
     }
-  my_datacpy(img, save, img->data, 0);
+  my_datacpy(wind, save, wind->data, 0);
   return (0);
 }

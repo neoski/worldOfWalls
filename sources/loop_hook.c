@@ -1,67 +1,67 @@
 #include "wolf.h"
 
-int	check_codekeys(t_img *img, int keycode)
+int	check_codekeys(t_window *wind, int keycode)
 {
   if (keycode == RIGHT)
-    img->kright = 0;
+    wind->kright = 0;
   if (keycode == LEFT)
-    img->kleft = 0;
+    wind->kleft = 0;
   if (keycode == UP)
-    img->kup = 0;
+    wind->kup = 0;
   if (keycode == DOWN)
-    img->kdown = 0;
+    wind->kdown = 0;
   if (keycode == SPACE)
-    img->space = 0;
+    wind->space = 0;
   return (0);
 }
 
-int	key_release(int keycode, t_img *img)
+int	key_release(int keycode, t_window *wind)
 {
-  if (img->args == 0)
-    chose_map(img, keycode, 0, 0);
+  if (wind->args == 0)
+    chose_map(wind, keycode, 0, 0);
   else if (keycode == KEYW || keycode == KEYT || keycode == KEYH ||
 	   keycode == KEYB || keycode == KEYR)
     {
-      if ((keycode == KEYB || keycode == KEYR) && img->weapon!= 2)
-	key_b_r(img, keycode);
+      if ((keycode == KEYB || keycode == KEYR) && wind->weapon!= 2)
+	key_b_r(wind, keycode);
       if (keycode == KEYW)
-	change_weapon(img);
+	change_weapon(wind);
       if (keycode == KEYT)
-	show_target(img, -1);
+	show_target(wind, -1);
       if (keycode == KEYH)
-	img->help *= -1;
-      build_img(img, -1);
+	wind->help *= -1;
+      build_img(wind, -1);
     }
   if (keycode == LEFT || keycode == UP || keycode == RIGHT ||
       keycode == DOWN || keycode == SPACE)
-    check_codekeys(img, keycode);
+    check_codekeys(wind, keycode);
   if (keycode == ECHAP)
     exit(0);
   return (0);
 }
 
-int	loop_hook(t_img *img)
+int	loop_hook(t_window *wind)
 {
   int built;
 
   built = 0;
-  if (img->kup)
-    key_up_down(img, UP);
-  if (img->kdown)
-    key_up_down(img, DOWN);
-  if (img->kleft)
-    key_right_left(img, LEFT);
-  if (img->kright)
-    key_right_left(img, RIGHT);
-  if (img->weaponBis) {
-    ftime(&img->currentTime);
-    if (img->currentTime.time > img->weaponBisTime ||
-    img->currentTime.millitm > img->weaponBisMilli)
-      img->weaponBis = 0;
-      build_img(img, -1);
+  if (wind->kup)
+    key_up_down(wind, UP);
+  if (wind->kdown)
+    key_up_down(wind, DOWN);
+  if (wind->kleft)
+    key_right_left(wind, LEFT);
+  if (wind->kright)
+    key_right_left(wind, RIGHT);
+  if (wind->weaponBis) {
+    ftime(&wind->currentTime);
+    if (wind->currentTime.time > wind->weaponBisTime ||
+    wind->currentTime.millitm > wind->weaponBisMilli)
+      wind->weaponBis = 0;
+      build_img(wind, -1);
       built = 1;
   }
-  if (!built && (img->kright || img->kleft || img->kup || img->kdown))
-    build_img(img, -1);
+  if (!built && (wind->kright || wind->kleft || wind->kup || wind->kdown))
+    build_img(wind, -1);
   return (0);
 }

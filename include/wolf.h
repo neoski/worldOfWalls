@@ -49,7 +49,7 @@ typedef	struct	s_color
   int		b;
 }		t_color;
 
-typedef struct	s_img
+typedef struct	s_window
 {
   char	      	*map;
   char	      	*data;
@@ -82,36 +82,36 @@ typedef struct	s_img
   int	        space;
   t_coord	*coord;
   t_color	color;
-}		t_img;
+}             t_window;
 
 char	*get_wolf_map(char *map, char *file, int i, int y);
-int	build_img(t_img *img, float xmax);
-int	calc_x_y(t_img *img, float xmax);
-int	calc_dist_x(t_img *img, int xmap);
-int	calc_dist_y(t_img *img, int xmap, int ymap);
+int	build_img(t_window *wind, float xmax);
+int	calc_x_y(t_window *wind, float xmax);
+int	calc_dist_x(t_window *wind, int xmap);
+int	calc_dist_y(t_window *wind, int xmap, int ymap);
 int	is_wall(char *map, int x, int y, int xmap);
 int	my_puterror(char *str);
-int	pixel_to_img(t_img *img, int x, int y);
-int	key_up_down(t_img *img, int keycode);
+int	pixel_to_img(t_window *wind, int x, int y);
+int	key_up_down(t_window *wind, int keycode);
 int	x_max_map(char *map);
 int	y_max_map(char *map);
-int	get_background(t_img *img);
-int	change_wall_color(t_img *img, float ksave);
-int	reset_wall_color(t_img *img);
-int	background(t_img *img);
-int	key_right_left(t_img *img, int keycode);
-int	check_weapon(t_img *img);
+int	get_background(t_window *wind);
+int	change_wall_color(t_window *wind, float ksave);
+int	reset_wall_color(t_window *wind);
+int	background(t_window *wind);
+int	key_right_left(t_window *wind, int keycode);
+int	check_weapon(t_window *wind);
 int	check_map(char *map);
-int	ini_first_pos(t_img *img, int i, int x, int y);
-int	change_weapon(t_img *img);
-int	key_b_r(t_img *img, int keycode);
-int	check_if_win(t_img *img, int xmap, int ymap);
-int	create_help(t_img *img);
-int	chose_map(t_img *img, int i, int h, int w);
-int	loop_hook(t_img *img);
-int	key_release(int keycode, t_img *img);
-int	my_datacpy(t_img *img, char *scr, char *dest, int i);
-int	get_score(t_img *img);
-void    show_target(t_img *img, int i);
+int	ini_first_pos(t_window *wind, int i, int x, int y);
+int	change_weapon(t_window *wind);
+int	key_b_r(t_window *wind, int keycode);
+int	check_if_win(t_window *wind, int xmap, int ymap);
+int	create_help(t_window *wind);
+int	chose_map(t_window *wind, int i, int h, int w);
+int	loop_hook(t_window *wind);
+int	key_release(int keycode, t_window *wind);
+int	my_datacpy(t_window *wind, char *scr, char *dest, int i);
+int	get_score(t_window *wind);
+void    show_target(t_window *wind, int i);
 
 #endif /* !WOLF_H_ */

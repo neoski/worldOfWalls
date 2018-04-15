@@ -1,19 +1,19 @@
 #include "wolf.h"
 
-int	ini_first_pos(t_img *img, int i, int x, int y)
+int	ini_first_pos(t_window *wind, int i, int x, int y)
 {
   int	ymax;
 
-  ymax = y_max_map(img->map) - 1;
-  while (img->map[i] != '\0')
+  ymax = y_max_map(wind->map) - 1;
+  while (wind->map[i] != '\0')
     {
-      if (img->map[i] == '0')
+      if (wind->map[i] == '0')
 	{
-	  img->coord->p_x0 = x + 0.5;
-	  img->coord->p_y0 = ymax - y + 1 + 0.5;
+	  wind->coord->p_x0 = x + 0.5;
+	  wind->coord->p_y0 = ymax - y + 1 + 0.5;
 	  return (0);
 	}
-      if (img->map[i] == ' ')
+      if (wind->map[i] == ' ')
 	{
 	  i++;
 	  y++;

@@ -1,32 +1,32 @@
 #include "wolf.h"
 
-void		draw_line(t_img *img, int x, int i, int z)
+void		draw_line(t_window *wind, int x, int i, int z)
 {
   static float	ksave[3] = {0, 0, 0};
   int		size;
   int		midy;
 
   midy = YIMG / 2;
-  size = YIMG / (2 * img->coord->k);
+  size = YIMG / (2 * wind->coord->k);
   if (ksave[1] != 0 && ksave[2] != 0 && ksave[1] != ksave[0]
       && ksave[2] != ksave[0])
-    change_wall_color(img, ksave[0]);
+    change_wall_color(wind, ksave[0]);
   while (z < size && z < YIMG)
     {
-      pixel_to_img(img, x, midy + i);
+      pixel_to_img(wind, x, midy + i);
       z++;
       if (z != size && z < YIMG)
 	{
-	  pixel_to_img(img, x, midy - i++);
+	  pixel_to_img(wind, x, midy - i++);
 	  z++;
 	}
     }
   if (ksave[1] != 0 && ksave[2] != 0 && ksave[1] == ksave[0]
       && ksave[2] == ksave[0])
-    reset_wall_color(img);
+    reset_wall_color(wind);
   ksave[2] = ksave[1];
   ksave[1] = ksave[0];
-  ksave[0] = img->coord->k;
+  ksave[0] = wind->coord->k;
 }
 
 int	x_max_map(char *map)
@@ -55,58 +55,58 @@ int	y_max_map(char *map)
   return (y);
 }
 
-int	show_all_imgs(t_img *img, int xmap)
+int	show_all_imgs(t_window *wind, int xmap)
 {
   int	x;
   int	y;
 
-  x = 1 * cos(img->coord->a) + img->coord->p_x0;
-  y = 1 * sin(img->coord->a) + img->coord->p_y0;
-  if (img->weapon != 2) {
-    if (!img->weaponBis) 
-      my_datacpy(img, img->weaponImg, img->data, 0);
+  x = 1 * cos(wind->coord->a) + wind->coord->p_x0;
+  y = 1 * sin(wind->coord->a) + wind->coord->p_y0;
+  if (wind->weapon != 2) {
+    if (!wind->weaponBis) 
+      my_datacpy(wind, wind->weaponImg, wind->data, 0);
     else
-      my_datacpy(img, img->weaponBisImg, img->data, 0);
+      my_datacpy(wind, wind->weaponBisImg, wind->data, 0);
   }
-  if (img->target== 1 && is_wall(img->map, x, y, xmap) == 0)
-    my_datacpy(img, img->targetImg, img->data, 0);
-  else if (img->target== 1)
+  if (wind->target== 1 && is_wall(wind->map, x, y, xmap) == 0)
+    my_datacpy(wind, wind->targetImg, wind->data, 0);
+  else if (wind->target== 1)
     {
-      if (x != 0 && x != x_max_map(img->map) - 1 &&
-	  y != 0 && y != y_max_map(img->map))
-	my_datacpy(img, img->btargImg, img->data, 0);
+      if (x != 0 && x != x_max_map(wind->map) - 1 &&
+	  y != 0 && y != y_max_map(wind->map))
+	my_datacpy(wind, wind->btargImg, wind->data, 0);
       else
-	my_datacpy(img, img->rtargImg, img->data, 0);
+	my_datacpy(wind, wind->rtargImg, wind->data, 0);
     }
-  if (img->help == 1)
-    my_datacpy(img, img->helpImg, img->data, 0);
-  mlx_put_image_to_window(img->ini, img->window, img->img, 0, 0);
+  if (wind->help == 1)
+    my_datacpy(wind, wind->helpImg, wind->data, 0);
+  mlx_put_image_to_window(wind->ini, wind->window, wind->img, 0, 0);
   return (0);
 }
 
-int	build_img(t_img *img, float xmax)
+int	build_img(t_window *wind, float xmax)
 {
   int	xmap;
   int	ymap;
 
-  background(img);
-  reset_wall_color(img);
-  xmap = x_max_map(img->map);
-  ymap = y_max_map(img->map);
+  background(wind);
+  reset_wall_color(wind);
+  xmap = x_max_map(wind->map);
+  ymap = y_max_map(wind->map);
   while (xmax < XIMG)
     {
-      calc_x_y(img, xmax);
-      img->coord->k = -1;
-      calc_dist_x(img, xmap);
-      calc_dist_y(img, xmap, ymap);
-      if (img->coord->k > 0)
-	draw_line(img, xmax, 0, 0);
+      calc_x_y(wind, xmax);
+      wind->coord->k = -1;
+      calc_dist_x(wind, xmap);
+      calc_dist_y(wind, xmap, ymap);
+      if (wind->coord->k > 0)
+	draw_line(wind, xmax, 0, 0);
       xmax++;
     }
-  if (img->win != 1)
-    show_all_imgs(img, xmap);
-  get_score(img);
-  if (img->win == 1)
-    mlx_put_image_to_window(img->ini, img->window, img->targetImg, 0, 0);
+  if (wind->win != 1)
+    show_all_imgs(wind, xmap);
+  get_score(wind);
+  if (wind->win == 1)
+    mlx_put_image_to_window(wind->ini, wind->window, wind->targetImg, 0, 0);
   return (0);
 }

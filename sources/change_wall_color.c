@@ -1,26 +1,26 @@
 #include "wolf.h"
 
-int	change_wall_color(t_img *img, float ksave)
+int	change_wall_color(t_window *wind, float ksave)
 {
-  if (ksave > img->coord->k)
+  if (ksave > wind->coord->k)
     {
-      img->color.r = 10;
-      img->color.g = 10;
-      img->color.b = 30;
+      wind->color.r = 10;
+      wind->color.g = 10;
+      wind->color.b = 30;
     }
-  else if (ksave < img->coord->k)
+  else if (ksave < wind->coord->k)
     {
-      img->color.r = 25;
-      img->color.g = 25;
-      img->color.b = 45;
+      wind->color.r = 25;
+      wind->color.g = 25;
+      wind->color.b = 45;
     }
   return (0);
 }
 
-int	reset_wall_color(t_img *img)
+int	reset_wall_color(t_window *wind)
 {
-  img->color.r = 20;
-  img->color.g = 20;
-  img->color.b = 40;
+  wind->color.r = 20;
+  wind->color.g = 20;
+  wind->color.b = 40;
   return (0);
 }
